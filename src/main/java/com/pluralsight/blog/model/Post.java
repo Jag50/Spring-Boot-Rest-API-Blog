@@ -1,5 +1,14 @@
 package com.pluralsight.blog.model;
 
+//PART 2
+//Since we want to connect Author to Post, we need to add a relationship to Author inside the Post Entity.
+// Add a private Author property called author to the Post Entity class and use the @ManyToOne
+// annotation with (fetch = FetchType.EAGER).
+// We also need to do a few additional things in the Post class for the Author relationship:
+//
+//Add a getter, public Author getAuthor(), that returns author.
+//Add a setter, public void setAuthor(Author author), that sets this.author to the passed in parameter.
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -24,6 +33,19 @@ public class Post {
     @Temporal(TemporalType.DATE)
     @CreationTimestamp
     private Date date;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Author author;
+
+    public Author getAuthor(){
+        return author;
+    }
+
+    public void setAuthor(Author author){
+
+        this.author = author;
+    }
+
 
     public Post() {
         super();

@@ -1,3 +1,14 @@
+//PART 3
+//Add the corresponding property to the Author Entity class, which will be a List<Post> called posts with
+// the @OneToMany annotation. We also need to do a few additional things in the Author class for the Post relationship:
+//
+//To the default constructor, after  super();, initialize posts to a new empty ArrayList.
+//Also edit the getter, public List<Post> getPosts(), to return posts instead of null.
+//And in lieu of a setter, edit  public void addPost(Post post) to add the passed-in post parameter to the posts list
+// instead of the return; statement.
+
+
+
 package com.pluralsight.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,11 +29,19 @@ public class Author {
     private Long id;
     private String firstname;
     private String lastname;
+    @JsonIgnore //Hides password and username
     private String username;
+    @JsonIgnore
     private String password;
 
+    @OneToMany
+    List<Post> posts;
+
     public Author() {
+
         super();
+
+        posts = new ArrayList<>();
     }
 
     public Author(String username, String firstname, String lastname, String password) {
@@ -85,10 +104,10 @@ public class Author {
     }
 
     public List<Post> getPosts() {
-        return null;
+        return posts;
     }
 
     public void addPost(Post post) {
-        return;
+        posts.add(post);
     }
 }
