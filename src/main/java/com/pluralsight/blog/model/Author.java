@@ -27,6 +27,8 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Version
+    private Long version;
     private String firstname;
     private String lastname;
     @JsonIgnore //Hides password and username

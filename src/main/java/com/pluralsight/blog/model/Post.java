@@ -26,6 +26,10 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Version//Adding version to the title class
+    private Long version;
+    @NotNull //Adding @NotNull to the title class property
+    @Size(min=4, max=100)
     private String title;
     @Column(length=1000000)
     @Lob
